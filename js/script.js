@@ -1,31 +1,28 @@
 function initRating(){
   const numbers = document.querySelectorAll('[data-rating="numbers"] span');
-  const submit = document.querySelector('[data-rating="submit"]');
+  const submitButton = document.querySelector('[data-rating="submit"]');
   const ratingContainer = document.querySelector('[data-rating="ratingContainer"]');
   const resultContainer = document.querySelector('[data-rating="resultContainer"]');
   const resultSummary = document.querySelector('.result-summary');
 
-  function getNumber(e){
-    e.preventDefault();
-    numbers.forEach((active)=>{
+  function getNumbers(){
+    numbers.forEach((active) =>{
       active.classList.remove('active');
     });
     this.classList.add('active');
-    const summary = this.innerHTML;
-    resultSummary.innerHTML = `You selected ${summary} out of 5`;
-  }
+    resultSummary.innerHTML = `You selected ${this.innerHTML} out of 5`;
+  };
 
-  function submitClick(e){
+  function submit(e){
     e.preventDefault();
     ratingContainer.style.display = 'none';
     resultContainer.style.display = 'block';
   }
 
   numbers.forEach((item) =>{
-    item.addEventListener('click',getNumber);
+    item.addEventListener('click',getNumbers);
   });
-
-  submit.addEventListener('click', submitClick);
+  submitButton.addEventListener('click',submit);
 }
 
 initRating();
